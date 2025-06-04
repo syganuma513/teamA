@@ -27,7 +27,7 @@ public class AlbumController {
         this.albumService = albumService;
         this.musicService = musicService;
     }
-
+    //ぬわあああああああああああああああuuuu
     @GetMapping
     public String albums(Model model) {
         // List<Album> albums = albumService.getAllAlbums();
@@ -35,7 +35,7 @@ public class AlbumController {
         model.addAttribute("albums", albums);
         return "album/album-list";
     }
-
+    //aaa
     @GetMapping("/new")
     public String albumForm(Model model) {
         AlbumForm albumForm = new AlbumForm();
