@@ -15,6 +15,8 @@ import com.example.music_management.service.MusicService;
 import com.example.music_management.form.MusicForm;
 import com.example.music_management.viewmodel.AlbumViewModel;
 
+// test
+
 @Controller
 @RequestMapping("/albums")
 public class AlbumController {
