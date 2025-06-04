@@ -25,7 +25,7 @@ public class AlbumController {
         this.albumService = albumService;
         this.musicService = musicService;
     }
-    //ぬわあああああああああああああああ
+    //ぬわあああああああああああああああuuuu
     @GetMapping
     public String albums(Model model) {
         // List<Album> albums = albumService.getAllAlbums();
