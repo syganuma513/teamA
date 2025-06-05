@@ -6,17 +6,22 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 
 @Configuration
 public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        HttpSessionRequestCache requestCache = new HttpSessionRequestCache();
+        requestCache.setMatchingRequestParameterName("mycustomparameter");
         http
             .authorizeHttpRequests(request -> request
                 .requestMatchers("/register", "/login", "/error").permitAll()
                 // .anyRequest().permitAll())
                 .anyRequest().authenticated())
+                .requestCache((cache) -> cache
+                    .requestCache(requestCache))
             .formLogin(login -> login
                 .loginProcessingUrl("/login")
                 .loginPage("/login")
