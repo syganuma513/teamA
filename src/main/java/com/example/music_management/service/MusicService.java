@@ -5,6 +5,7 @@ import com.example.music_management.repository.MusicRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import com.example.music_management.form.MusicForm;
+import com.example.music_management.viewmodel.MusicViewModel;
 
 @Service
 public class MusicService {
@@ -40,5 +41,9 @@ public class MusicService {
             throw new IllegalArgumentException("Music ID does not match");
         }
         musicRepository.updateMusic(music);
+    }
+
+    public List<MusicViewModel> selectMusicsWithFavorite(long albumId, long userId) {
+        return musicRepository.selectMusicsWithFavorite(albumId, userId);
     }
 }
