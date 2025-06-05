@@ -15,6 +15,8 @@ import com.example.music_management.service.MusicService;
 import com.example.music_management.form.MusicForm;
 import com.example.music_management.viewmodel.AlbumViewModel;
 
+// test
+
 @Controller
 @RequestMapping("/albums")
 public class AlbumController {
@@ -33,7 +35,7 @@ public class AlbumController {
         model.addAttribute("albums", albums);
         return "album/album-list";
     }
-
+    //aaa
     @GetMapping("/new")
     public String albumForm(Model model) {
         AlbumForm albumForm = new AlbumForm();
