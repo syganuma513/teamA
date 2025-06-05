@@ -13,15 +13,11 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        HttpSessionRequestCache requestCache = new HttpSessionRequestCache();
-        requestCache.setMatchingRequestParameterName("mycustomparameter");
         http
             .authorizeHttpRequests(request -> request
                 .requestMatchers("/register", "/login", "/error").permitAll()
                 // .anyRequest().permitAll())
                 .anyRequest().authenticated())
-                .requestCache((cache) -> cache
-                    .requestCache(requestCache))
             .formLogin(login -> login
                 .loginProcessingUrl("/login")
                 .loginPage("/login")
