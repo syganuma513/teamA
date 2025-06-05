@@ -40,7 +40,7 @@ public class AlbumController {
         model.addAttribute("albumForm", albumForm);
         return "album/album-form";
     }
-
+    //test
     @PostMapping("/new")
     public String createAlbum(AlbumForm albumForm) {
         albumService.createAlbum(albumForm);
