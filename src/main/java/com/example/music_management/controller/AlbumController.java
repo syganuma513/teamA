@@ -67,7 +67,7 @@ public class AlbumController {
         albumService.deleteAlbum(albumId);
         return "redirect:/albums";
     }
-
+    //jajajaj
     @GetMapping("/{albumId}/edit")
     public String editAlbum(@PathVariable long albumId, Model model) {
         Album album = albumService.getAlbumById(albumId);
