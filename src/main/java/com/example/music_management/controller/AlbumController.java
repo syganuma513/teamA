@@ -14,6 +14,9 @@ import com.example.music_management.entity.Music;
 import com.example.music_management.service.MusicService;
 import com.example.music_management.form.MusicForm;
 import com.example.music_management.viewmodel.AlbumViewModel;
+import com.example.music_management.security.CustomUserDetails;
+import com.example.music_management.viewmodel.MusicViewModel;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 
 @Controller
 @RequestMapping("/albums")
@@ -25,7 +28,7 @@ public class AlbumController {
         this.albumService = albumService;
         this.musicService = musicService;
     }
-    //ぬわあああああああああああああああuuuu
+
     @GetMapping
     public String albums(Model model) {
         // List<Album> albums = albumService.getAllAlbums();
@@ -33,7 +36,7 @@ public class AlbumController {
         model.addAttribute("albums", albums);
         return "album/album-list";
     }
-    //aaa
+    
     @GetMapping("/new")
     public String albumForm(Model model) {
         AlbumForm albumForm = new AlbumForm();
@@ -48,9 +51,12 @@ public class AlbumController {
     }
 
     @GetMapping("/{albumId}")
-    public String album(@PathVariable long albumId, Model model) {
+    public String album(@PathVariable long albumId,
+                        Model model,
+                        @AuthenticationPrincipal CustomUserDetails userDetails) {
         Album album = albumService.getAlbumById(albumId);
-        List<Music> musics = musicService.getMusicsByAlbumId(albumId);
+        // List<Music> musics = musicService.getMusicsByAlbumId(albumId);
+        List<MusicViewModel> musics = musicService.selectMusicsWithFavorite(albumId, userDetails.getUserId());
         model.addAttribute("album", album);
         model.addAttribute("musics", musics);
         return "album/album-detail";
