@@ -55,7 +55,7 @@ public class AlbumController {
         model.addAttribute("musics", musics);
         return "album/album-detail";
     }
-
+//jjjjj
     @PostMapping("/{albumId}/delete")
     public String deleteAlbum(@PathVariable long albumId) {
         albumService.deleteAlbum(albumId);
